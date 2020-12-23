@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section#homepage {
+  background-color: white;
+  background-image: url("./images/paul-hanaoka-w2DsS-ZAP4U-unsplash.jpg");
+  background-blend-mode: luminosity;
+  background-size: cover;
+  background-position: top center;
+}
+
+form input[type="search"] {
+  position: relative;
+
+  &::before {
+    content: url(./images/search-24px.svg);
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    background-color: black;
+    z-index: 100;
+    transform: translateX(50%);
+  }
+}

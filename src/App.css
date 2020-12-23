@@ -1,38 +1,30 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+section#homepage {
+  background-color: white;
+  background-image: url("./images/paul-hanaoka-w2DsS-ZAP4U-unsplash.jpg");
+  background-blend-mode: luminosity;
+  background-size: cover;
+  background-position: top center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+form input[type="search"] {
+  position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+form input[type="search"]::before {
+  content: url(./images/search-24px.svg);
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  background-color: black;
+  z-index: 100;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*# sourceMappingURL=App.css.map */
