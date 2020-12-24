@@ -10,14 +10,11 @@ const OneItem = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [stockAvailable, setStockAvailable] = useState(true);
   const [tooMuch, setTooMuch] = useState(false);
 
   useEffect(()=> {
     return function cleanup() {
       setQuantity(0);
-      setSubmitted(false);
-      setStockAvailable(true);
       setTooMuch(false)
     }
   },[cart])
@@ -27,10 +24,8 @@ const OneItem = () => {
     if (cart.products.length === 0) {
       addToCart(id, price, amount);
       setSubmitted(true);
-      setStockAvailable(false)
       setTimeout(() => {
         setSubmitted(false);
-        setStockAvailable(true);
       }, 2000);
       return;
     }
@@ -41,18 +36,20 @@ const OneItem = () => {
     if (itemFilteredList.length === 0 || itemFilteredCart.length === 0) {
       addToCart(id, price, amount);
       setSubmitted(true);
-      setStockAvailable(false);
       setTimeout(() => {
         setSubmitted(false);
-        setStockAvailable(true);
+
       }, 2000);
       return;
     }
 
+  
+    console.log( itemFilteredList[0].stock - +itemFilteredCart[0][1] - amount >= 0);
+
     if (
       +itemFilteredCart[0][1] > 0 &&
       +itemFilteredCart[0][1] < itemFilteredList[0].stock &&
-      +itemFilteredList[0].stock - +itemFilteredList[0][1] - amount >= 0
+      itemFilteredList[0].stock - +itemFilteredCart[0][1] - amount >= 0
     ) {
       addToCart(id, price, amount);
       setSubmitted(true);
@@ -111,8 +108,7 @@ const OneItem = () => {
         </InfoContainer>
       </ContainerOneItem>
       {submitted ? <FootDisplay>Added to your cart!</FootDisplay> : ""}
-      {!stockAvailable ? <p>not Available</p> : ""}
-      {tooMuch ? <p>There are not so many Items available, please try again</p>: ''}
+      {tooMuch ? <FootDisplay>There are not so many Items available, please try again</FootDisplay>: ''}
     </section>
   );
 };
